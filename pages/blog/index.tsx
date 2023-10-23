@@ -77,6 +77,9 @@ export async function getServerSideProps(context: Context) {
         posts.push(blogs);
       }
     });
+
+    context.res.setHeader("cache-control", "max-age=14400, s-maxage=84000");
+
     return {
       props: {
         pageUrl: context.resolvedUrl,

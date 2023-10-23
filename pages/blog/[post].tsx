@@ -99,6 +99,8 @@ export async function getServerSideProps({ params }: any) {
     const posts = await getBlogPostRes(`/blog/${params.post}`);
     if (!page || !posts) throw new Error('404');
 
+    context.res.setHeader("cache-control", "max-age=14400, s-maxage=84000");
+    
     return {
       props: {
         pageUrl: `/blog/${params.post}`,
