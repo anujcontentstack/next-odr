@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useState } from 'react';
 
 import { GetServerSidePropsContext } from 'next';
 import Skeleton from 'react-loading-skeleton';
@@ -9,7 +6,6 @@ import Skeleton from 'react-loading-skeleton';
 import ArchiveRelative from '../../components/archive-relative';
 import BlogList from '../../components/blog-list';
 import RenderComponents from '../../components/render-components';
-import { onEntryChange } from '../../contentstack-sdk';
 import {
   getBlogListRes,
   getPageRes,
@@ -33,9 +29,7 @@ export default function Blog({ page, posts, archivePost, pageUrl }: { page: Page
     }
   }
 
-  useEffect(() => {
-    onEntryChange(() => fetchData());
-  }, []);
+
   return (
     <>
       {getBanner.page_components ? (
