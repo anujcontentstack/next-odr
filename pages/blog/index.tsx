@@ -3,6 +3,7 @@ import React, {
   useState,
 } from 'react';
 
+import { GetServerSidePropsContext } from 'next';
 import Skeleton from 'react-loading-skeleton';
 
 import ArchiveRelative from '../../components/archive-relative';
@@ -14,7 +15,6 @@ import {
   getPageRes,
 } from '../../helper';
 import {
-  Context,
   Page,
   PageUrl,
   PostPage,
@@ -74,9 +74,9 @@ export default function Blog({ page, posts, archivePost, pageUrl }: { page: Page
   );
 }
 
-export async function getServerSideProps(context: Context) {
+export async function getServerSideProps({ resolvedUrl, res }: GetServerSidePropsContext) {
   try {
-    const page = await getPageRes(context.resolvedUrl);
+    const page = await getPageRes(resolvedUrl);
     const result: PostPage = await getBlogListRes();
 
     const archivePost = [] as any;
@@ -89,11 +89,11 @@ export async function getServerSideProps(context: Context) {
       }
     });
 
-    context.setHeader("cache-control", "max-age=14400, s-maxage=84000");
+    res.setHeader("cache-control", "max-age=14400, s-maxage=84000");
 
     return {
       props: {
-        pageUrl: context.resolvedUrl,
+        pageUrl: resolvedUrl,
         page,
         posts,
         archivePost,

@@ -5,6 +5,7 @@ import React, {
 
 import parse from 'html-react-parser';
 import moment from 'moment';
+import { GetServerSidePropsContext } from 'next/types';
 import Skeleton from 'react-loading-skeleton';
 
 import ArchiveRelative from '../../components/archive-relative';
@@ -104,17 +105,17 @@ export default function BlogPost({ blogPost, page, pageUrl }: { blogPost: BlogPo
     </>
   );
 }
-export async function getServerSideProps({ params, res }: any) {
+export async function getServerSideProps({ params, res }: GetServerSidePropsContext) {
   try {
     const page = await getPageRes('/blog');
-    const posts = await getBlogPostRes(`/blog/${params.post}`);
+    const posts = await getBlogPostRes(`/blog/${params?.post}`);
     if (!page || !posts) throw new Error('404');
 
     res.setHeader("cache-control", "max-age=14400, s-maxage=84000");
 
     return {
       props: {
-        pageUrl: `/blog/${params.post}`,
+        pageUrl: `/blog/${params?.post}`,
         blogPost: posts,
         page,
       },
