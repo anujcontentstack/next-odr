@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
 import parse from 'html-react-parser';
-import { getPageRes, getBlogPostRes } from '../../helper';
-import { onEntryChange } from '../../contentstack-sdk';
+import moment from 'moment';
 import Skeleton from 'react-loading-skeleton';
-import RenderComponents from '../../components/render-components';
+
 import ArchiveRelative from '../../components/archive-relative';
-import { Page, BlogPosts, PageUrl } from "../../typescript/pages";
+import RenderComponents from '../../components/render-components';
+import { onEntryChange } from '../../contentstack-sdk';
+import {
+  getBlogPostRes,
+  getPageRes,
+} from '../../helper';
+import {
+  BlogPosts,
+  Page,
+  PageUrl,
+} from '../../typescript/pages';
 
+export default function BlogPost({ blogPost, page, pageUrl }: { blogPost: BlogPosts, page: Page, pageUrl: PageUrl }) {
 
-export default function BlogPost({ blogPost, page, pageUrl }: {blogPost: BlogPosts, page: Page, pageUrl: PageUrl}) {
-  
   const [getPost, setPost] = useState({ banner: page, post: blogPost });
   async function fetchData() {
     try {

@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { onEntryChange } from '../../contentstack-sdk';
-import BlogList from '../../components/blog-list';
-import RenderComponents from '../../components/render-components';
-import { getPageRes, getBlogListRes } from '../../helper';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import Skeleton from 'react-loading-skeleton';
 
 import ArchiveRelative from '../../components/archive-relative';
-import Skeleton from 'react-loading-skeleton';
-import { Page, PostPage, PageUrl, Context } from "../../typescript/pages";
+import BlogList from '../../components/blog-list';
+import RenderComponents from '../../components/render-components';
+import { onEntryChange } from '../../contentstack-sdk';
+import {
+  getBlogListRes,
+  getPageRes,
+} from '../../helper';
+import {
+  Context,
+  Page,
+  PageUrl,
+  PostPage,
+} from '../../typescript/pages';
 
-
-export default function Blog({ page, posts, archivePost, pageUrl }: {page: Page, posts: PostPage, archivePost: PostPage, pageUrl: PageUrl}) {
+export default function Blog({ page, posts, archivePost, pageUrl }: { page: Page, posts: PostPage, archivePost: PostPage, pageUrl: PageUrl }) {
 
   const [getBanner, setBanner] = useState(page);
   async function fetchData() {
@@ -78,7 +89,7 @@ export async function getServerSideProps(context: Context) {
       }
     });
 
-    context.res.setHeader("cache-control", "max-age=14400, s-maxage=84000");
+    context.setHeader("cache-control", "max-age=14400, s-maxage=84000");
 
     return {
       props: {
