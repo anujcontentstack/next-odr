@@ -83,7 +83,7 @@ export async function getServerSideProps({ resolvedUrl, res }: GetServerSideProp
       }
     });
 
-    res.setHeader("cache-control", "max-age=14400, s-maxage=84000, no-store");
+    res.setHeader("cache-control", "max-age=14400, s-maxage=84000");
 
     return {
       props: {
