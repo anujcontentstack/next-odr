@@ -17,9 +17,9 @@ const config = {
     CONTENTSTACK_LIVE_PREVIEW:
       process.env.NEXT_PUBLIC_CONTENTSTACK_LIVE_PREVIEW || 'true',
     CONTENTSTACK_LIVE_EDIT_TAGS:
-      process.env.CONTENTSTACK_LIVE_EDIT_TAGS || 'false',
-      distDir:"build"
+      process.env.CONTENTSTACK_LIVE_EDIT_TAGS || 'false',      
   },
+  distDir:"build"
 };
 module.exports =
   process.env.NODE_ENV === 'development' ? config : withPWA(config);
