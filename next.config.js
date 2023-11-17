@@ -22,7 +22,10 @@ const config = {
   experimental: {    
     isrMemoryCacheSize: 0, // cache size in bytes
   },
-  output: "standalone"
+  output: "standalone",
+  generateBuildId: async () => {
+    return "deploymentUid"
+  }
 };
 module.exports =
   process.env.NODE_ENV === 'development' ? config : withPWA(config);
