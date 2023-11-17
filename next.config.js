@@ -19,6 +19,9 @@ const config = {
     CONTENTSTACK_LIVE_EDIT_TAGS:
       process.env.CONTENTSTACK_LIVE_EDIT_TAGS || 'false',      
   },
+  experimental: {    
+    isrMemoryCacheSize: 0, // cache size in bytes
+  },
   output: "standalone"
 };
 module.exports =
