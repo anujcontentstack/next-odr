@@ -24,7 +24,7 @@ const config = {
   },
   output: "standalone",
   generateBuildId: async () => {
-    return "deploymentUid"
+    return process.env.CONTENTSTACK_LAUNCH_DEPLOYMENT_UID
   }
 };
 module.exports =
