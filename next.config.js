@@ -19,7 +19,7 @@ const config = {
     CONTENTSTACK_LIVE_EDIT_TAGS:
       process.env.CONTENTSTACK_LIVE_EDIT_TAGS || 'false',
   },
-  generateBuildId: async () => {
+  generateBuildId: () => {
     return process.env.CONTENTSTACK_LAUNCH_DEPLOYMENT_UID
   }
 };
